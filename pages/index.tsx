@@ -10,6 +10,33 @@ import { Triangle } from 'react-loader-spinner'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
+export const data = {
+  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+    }
+  ]
+}
+
 const Home: NextPage = () => {
   const [groupName, setGroupName] = useState('')
   const [groupId, setGroupId] = useState('')
@@ -23,7 +50,6 @@ const Home: NextPage = () => {
     axios
       .get(`https://ildarum1.web.na4u.ru/getGroupMembers?group_id=${groupId}`)
       .then((res) => {
-        setInProgress(false)
         if (
           res.data.group_name !== '' &&
           res.data.group_name !== 'Private group' &&
@@ -37,7 +63,7 @@ const Home: NextPage = () => {
             datasets: [
               {
                 label: '# of Votes',
-                data: [res.data.male, res.data.female],
+                data: [res.data.sex.male, res.data.sex.female],
                 backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
                 borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
                 borderWidth: 1
@@ -49,7 +75,13 @@ const Home: NextPage = () => {
             datasets: [
               {
                 label: '# of Votes',
-                data: [res.data.adult, res.data.child, res.data.not_specified, res.data.old, res.data.teenagers],
+                data: [
+                  res.data.age.adult,
+                  res.data.age.child,
+                  res.data.age.notSpecified,
+                  res.data.age.old,
+                  res.data.age.teenagers
+                ],
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -68,6 +100,7 @@ const Home: NextPage = () => {
               }
             ]
           })
+          setInProgress(false)
         } else {
           setError(true)
         }
@@ -86,9 +119,9 @@ const Home: NextPage = () => {
       </Head>
       <div className={styles.main}>
         <div className="groupInfo">
-          <span>Past group ID: </span>
+          <span>Past group ID/screen name: </span>
           <input
-            type="number"
+            type="text"
             value={groupId}
             onChange={(e) => {
               setGroupId(e.target?.value || '')
