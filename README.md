@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# vk-group-analytic
 
-## Getting Started
+## Описание
+Кодовая база клиентской части проекта "Аналитика группы VK по полу и возрасту". 
+Стэк : react, next, typescript
 
-First, run the development server:
+### Механизм работы
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+1) Открыв localhost:3000, пользователю представлен экран на котором отображено поле для ввода id/screen_name сообщества <br>
+2) Пользователь вводит id/screen_name и нажимает кнопку "Calculate" <br>
+3) Отображается иконка загрузки, в это время происходят действия на сервере(получение, обработка, форматирование данных) <br>
+4) После загрузки перед пользователем представлено 2 диаграммы, созданные на основе полученных данных о поле и возрасте подписчиков <br>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Установка
+* В системе пользователя должна быть установлена node 12v+ (https://nodejs.org/en/) *
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### !! Для корректной работы приложения необходимо иметь запущенный сервер сервер части(https://github.com/ildarum21/vk-group-analytic-backend.git)
+### 1)Склонировать репозиторий
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+а) git clone https://github.com/ildarum21/vk-group-analytic.git <br>
+b) В верхней панели, над файловой структурой в правом верхнем углу имеется зеленая кнопка "CODE", <br>
+при нажатии на нее появляется всплывающее окно, где необходимо нажать DOWNLOAD ZIP <br>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 2) В папке проекта, для установки зависимостей, при помощи консоли ввести <br>
 
-## Learn More
+`yarn || npm i`
 
-To learn more about Next.js, take a look at the following resources:
+### 3) Запустить работу сервера при помощи команды
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`yarn dev || npm run dev`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
