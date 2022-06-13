@@ -48,7 +48,7 @@ const Home: NextPage = () => {
   const getData = () => {
     setInProgress(true)
     axios
-      .get(`https://ildarum1.web.na4u.ru/getGroupMembers?group_id=${groupId}`)
+      .get(`http://localhost:3001/getGroupMembers?group_id=${groupId}`)
       .then((res) => {
         if (
           res.data.group_name !== '' &&
